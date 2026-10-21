@@ -3,12 +3,13 @@
     <h1>Back-button scroll restoration repro</h1>
     <p>
       1. Scroll down so a link below is in view.<br />
-      2. Click either link — the page jumps down to <code>#foot</code>.<br />
+      2. Click the native link — the page jumps down to <code>#foot</code>.<br />
       3. Press the browser <strong>Back</strong> button.
     </p>
     <p>
       Expected: you return to where you were (where you clicked the link).<br />
-      Actual: the page jumps to the very top (scrollY = 0).
+      Actual: the page jumps to the very top (scrollY = 0) for the native anchor.<br />
+      The <code>&lt;NuxtLink&gt;</code> is a control and restores correctly.
     </p>
 
     <div style="height: 2000px; background: #f3f3f3">spacer top</div>
@@ -17,7 +18,7 @@
       <!-- Plain native anchor -->
       <a id="native" href="#foot">native &lt;a href="#foot"&gt;</a>
       &nbsp;|&nbsp;
-      <!-- Framework router link -->
+      <!-- Control: restores correctly since nuxt/nuxt#35608 -->
       <NuxtLink id="nuxt" to="#foot">&lt;NuxtLink to="#foot"&gt;</NuxtLink>
     </p>
 
